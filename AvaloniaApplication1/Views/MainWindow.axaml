@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication1.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaApplication1.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaApplication1">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Current element:" FontWeight="Bold" />
+            <TextBlock Text="{Binding CurrentItem}" Margin="0,0,0,10" />
+
+            <TextBlock Text="Elements:" FontWeight="Bold" />
+            <ListBox ItemsSource="{Binding Items}" Height="150" />
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBox Width="200" Margin="0,0,10,0" Text="{Binding NewItem}" />
+                <Button Content="Enqueue" Width="100" Margin="0,0,10,0"
+                        Command="{Binding EnqueueCommand}"
+                        CommandParameter="{Binding NewItem}" />
+                <Button Content="Dequeue" Width="100" Margin="0,0,10,0"
+                        Command="{Binding DequeueCommand}" />
+                <Button Content="Clear" Width="100"
+                        Command="{Binding ClearCommand}" />
+            </StackPanel>
+            
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" Margin="10,0,0,0" />
+        </StackPanel>
+    </Grid>
+</Window>
