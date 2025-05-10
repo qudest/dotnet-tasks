@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AircraftApp.ViewModels"
+        xmlns:models="using:AircraftApp.Models"
+        x:Class="AircraftApp.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="Aircraft Control"
+        Width="600" Height="400">
+    
+    <StackPanel Margin="20">
+        <TextBlock Text="Длина ВПП:"/>
+        <TextBox Text="{Binding RunwayLengthInput}"/>
+        <Button Content="Добавить самолет" 
+                Command="{Binding AddAirplaneCommand}"
+                Margin="0 5"/>
+        
+        <ListBox ItemsSource="{Binding Aircrafts}"
+                 SelectedItem="{Binding SelectedAircraft}"
+                 DisplayMemberBinding="{Binding Type}"/>
+        
+        <StackPanel Orientation="Horizontal" Margin="0 10">
+            <Button Content="Взлет!" 
+                    Command="{Binding TakeOffCommand}"
+                    Margin="0 0 5 0"/>
+            <Button Content="Посадка!" 
+                    Command="{Binding LandCommand}"/>
+        </StackPanel>
+        
+        <TextBlock Text="{Binding Status}"
+                   Margin="0 10" FontWeight="Bold"/>
+    </StackPanel>
+</Window>
